@@ -1,2 +1,1 @@
-osdev
-=====
+barebones kernel experiments
