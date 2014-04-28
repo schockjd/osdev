@@ -13,7 +13,8 @@ KERNELDIR := kernel
 
 OBJS := $(addprefix $(OUTDIR)/, \
         boot.o \
-		kernel.o)
+		kernel.o \
+		kutils.o )
 
 all: myos.bin
 
