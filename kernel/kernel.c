@@ -3,6 +3,7 @@
 #include <hub.h>
 
 #include <drivers/vga.h>
+#include <interfaces/dbgout.h>
 
 // Sanity check
 #if defined(__linux__)
@@ -14,6 +15,14 @@
 #endif
 
 void kernel_main() {
+    DebugOutI *dout;
+
     hub_init();
     vga_initialize();
+    
+    hub_find(&DebugOutUUID, (void **)&dout);
+
+    dout->writestr("Hello, Kernel World!");
+
 }
+

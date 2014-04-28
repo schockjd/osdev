@@ -2,10 +2,12 @@
 
 //Debug-Out UUID
 //4cd1214d-80de-4ad9-b3b4-ca8eecee37e4
-#define DebugOut_UUID \
+#define DEBUG_OUT_UUID \
     { 0x4c, 0xd1, 0x21, 0x4d, \
       0x80, 0xde, 0x4a, 0xd9, 0xb3, 0xb4, \
       0xca, 0x8e, 0xec, 0xee, 0x37, 0xe4 }
+
+extern uuid_t DebugOutUUID;
 
 typedef enum dbgout_color_t {
     COLOR_BLACK = 0,

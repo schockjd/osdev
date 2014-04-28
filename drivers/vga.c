@@ -23,6 +23,5 @@ DebugOutI dbgout_iface = {
 };
 
 kstatus_t vga_initialize() {
-    uuid_t dbgout_uuid = DebugOut_UUID;
-    return hub_register(&dbgout_uuid, &dbgout_iface);
+    return hub_register(&DebugOutUUID, &dbgout_iface);
 }

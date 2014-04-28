@@ -10,13 +10,14 @@ OUTDIR := build
 INITDIR := init
 KERNELDIR := kernel
 DRIVERDIR := drivers
-
+INTERFACEDIR := interfaces
 
 OBJS := $(addprefix $(OUTDIR)/, \
         boot.o \
 		kernel.o \
 		kutils.o \
 		hub.o \
+		dbgout.o \
 		vga.o)
 
 all: myos.bin
@@ -27,7 +28,10 @@ $(OUTDIR)/%.o: $(INITDIR)/%.S
 $(OUTDIR)/%.o: $(KERNELDIR)/%.c
 	$(CC) -c $< -o $@ $(CFLAGS) -Ikernel/include 
 
-$(OUTDIR)/%.o: $(DRIVERDIR)/*.c
+$(OUTDIR)/%.o: $(DRIVERDIR)/%.c
+	$(CC) -c $< -o $@ $(CFLAGS) -Ikernel/include
+
+$(OUTDIR)/%.o: $(INTERFACEDIR)/%.c
 	$(CC) -c $< -o $@ $(CFLAGS) -Ikernel/include
 
 $(OBJS): | $(OUTDIR)
