@@ -16,6 +16,7 @@ OBJS := $(addprefix $(OUTDIR)/, \
         boot.o \
 		kernel.o \
 		kutils.o \
+		hub.o \
 		vga.o)
 
 all: myos.bin
