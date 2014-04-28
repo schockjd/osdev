@@ -25,3 +25,11 @@ int memcmp(const void *s1, const void *s2, size_t n) {
     }
     return i;
 }
+
+void *memset(void *s, int c, size_t n) {
+    uint8_t *sPtr8 = (uint8_t *)s;
+    while ((void *)sPtr8 < s + n) {
+        *sPtr8 = (uint8_t)c;
+    }
+    return s;
+}

@@ -25,6 +25,12 @@ hubentry_t  hub_storage[4096];
 // Hub List Heads
 hubentry_t *hub_heads[64];
 
+
+kstatus_t hub_init() {
+    memset(&hub_storage, 0, sizeof(hub_storage));
+    memset(&hub_heads, 0, sizeof(hub_heads));
+    return 0;
+}
 kstatus_t get_free_hub(hubentry_t **hub) {
     size_t hubIdx;
     for (hubIdx = 0; hubIdx < 4096; hubIdx++) {
@@ -95,4 +101,5 @@ kstatus_t hub_find(uuid_t *uuid, void **interface) {
 extern "C" /* Use C linkage for kernel_main. */
 #endif
 void kernel_main() {
+    hub_init();
 }
