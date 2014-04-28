@@ -1,7 +1,9 @@
 /** 
  * Definitions for basic kernel types
  **/
-
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
 typedef uint8_t uuid_t[16];
 

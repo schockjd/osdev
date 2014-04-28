@@ -1,9 +1,3 @@
-#if !defined(__cplusplus)
-#include <stdbool.h>
-#endif
-#include <stddef.h>
-#include <stdint.h>
-
 #include <ktypes.h>
 #include <kutils.h>
 #include <hub.h>
