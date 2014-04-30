@@ -3,7 +3,7 @@ AS := i686-elf-as
 CC := i686-elf-gcc
 LD := i686-elf-gcc
 
-CFLAGS := -std=gnu99 -ffreestanding -O2 -Wall -I.
+CFLAGS := -std=gnu99 -gdwarf-2 -ffreestanding -O2 -Wall -I.
 LDFLAGS := -ffreestanding -O2 -nostdlib
 
 OUTDIR := build
@@ -20,7 +20,7 @@ OBJS := $(addprefix $(OUTDIR)/, \
 		dbgout.o \
 		vga.o)
 
-all: myos.bin
+all: $(OUTDIR)/myos.bin
 
 $(OUTDIR)/%.o: $(INITDIR)/%.S
 	$(AS) $< -o $@
@@ -36,7 +36,7 @@ $(OUTDIR)/%.o: $(INTERFACEDIR)/%.c
 
 $(OBJS): | $(OUTDIR)
 
-myos.bin: $(OBJS) linker.ld
+$(OUTDIR)/myos.bin: $(OBJS) linker.ld
 	$(LD) -T linker.ld -o $(OUTDIR)/myos.bin $(LDFLAGS) $(OBJS) -lgcc
 
 clean: 
@@ -44,3 +44,9 @@ clean:
 
 $(OUTDIR): 
 	mkdir $(OUTDIR)
+
+iso: $(OUTDIR)/myos.bin
+	mkdir -p $(OUTDIR)/isodir/boot/grub
+	cp $(OUTDIR)/myos.bin $(OUTDIR)/isodir/boot/myos.bin
+	cp img/grub.cfg $(OUTDIR)/isodir/boot/grub/grub.cfg
+	grub2-mkrescue -o $(OUTDIR)/myos.iso $(OUTDIR)/isodir

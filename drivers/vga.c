@@ -77,5 +77,6 @@ DebugOutI dbgout_iface = {
 };
 
 kstatus_t vga_initialize() {
+    vga_init();
     return hub_register(&DebugOutUUID, &dbgout_iface);
 }
